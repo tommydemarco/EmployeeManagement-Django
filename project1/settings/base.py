@@ -25,7 +25,9 @@ INSTALLED_APPS = [
     #adding local applications
     'apps.employees',
     'apps.fields',
-    'apps.prueba'
+    'apps.prueba',
+    #installing the third-party app CKEDITOR, to make editing text enters easier
+    'ckeditor'
 ]
 
 MIDDLEWARE = [

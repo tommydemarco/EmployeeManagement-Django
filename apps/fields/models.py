@@ -9,7 +9,19 @@ class Field(models.Model):
     alt_name = models.CharField('Short Name', max_length=20)
     in_use = models.BooleanField("In use", default=True)
 
+    #changing the name of the model in the django admin interface and other customizations
+    class Meta:
+        verbose_name = "Field option"
+        verbose_name_plural = "Field options"
+        #ordering table rows per id
+        ordering = ['id']
+        #disallowing the possibility to put a field that has the same attributes as before
+        unique_together = ('name', 'alt_name')
+
     #modifying the magic method __str__
     def __str__(self):
-        return "Department name:{}, department short name: {}, is the department in use? {}. ID of the field: {}".format(self.name, self.alt_name, self.in_use, self.id)
+        if self.in_use:
+            return "Department name:{}, short name: {}, In use, ID: {}".format(self.name, self.alt_name, self.id)
+        else:
+            return "Department name:{}, short name: {}, Not in use, ID: {}".format(self.name, self.alt_name, self.id)
 
