@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 #import the list view 
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, CreateView 
 
 #importing the model that is required in the class views
 from .models import Employee
@@ -77,3 +77,39 @@ class ListEmployeesByKeyword(ListView):
         return []
 
         
+"""Start of the Detail Views"""
+class EmployeeDetails(DetailView):
+    template_name = "employees/employee-details.html"
+    model = Employee
+
+    #you don't need to specify which obkect you need the details of,
+    #the DetailView knows it from the moment you pass the pk from the url
+
+    #access the object returned in the template with the word object: {{ object }}
+
+    #getting extra contex in the template with the method get_context_data
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["notice"] = "Notice: addresses should be verified witht the employees"
+
+        #this for example would pass to the detail view a querySet of all the employees
+        #context["notice"] = Employee.objects.all()
+
+        return context
+    
+
+#CreeateView section
+
+#create view for the insertion of a new employee
+class CreateNewEmployee(CreateView):
+    template_name = "employees/new-employee.html"
+    model = Employee
+    #inserting a field class variable is necessary for the usage of a CreateView
+    #to insert all fields assign the value ('__all__') to the fields variable
+    fields = ['first_name', 'last_name', 'contact_phone', 'address', 'base', 'field']
+
+    #adding the url for when the process is complete.
+    #required in a CreateView
+    success_url = "."
+
+    

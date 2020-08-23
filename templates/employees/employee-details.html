@@ -1,0 +1,67 @@
+<!-- extends the base template -->
+{% extends 'employees/base.html' %}
+
+<!-- start of the content block -->
+{% block content %}
+
+<div class="card-body p-5">
+  <h1 class="font-weight-light">Fixed Full Page Background Image</h1>
+  <p class="lead">In this snippet, the background image is fixed to the body element. Content on the page will scroll, but the image will remain in a fixed position!</p>
+  <!-- list table start -->
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Employees</h3>
+      <table class="table table-bordered table-striped table-responsive-stack mt-4"  id="tableOne">
+          <thead class="thead-dark">
+            <tr>
+                <th>Position</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Base</th>
+                <th>Contact number</th>
+                <th>Category</tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td>{{object.field.alt_name}}</td>
+                <td>{{object.first_name}}</td>
+                <td>{{object.last_name}}</td>
+                <td>{{object.base}}</td>
+                <td>{{object.contact_phone}}</td>
+                <td>{{object.field.name}}</td>
+            </tr>
+          </tbody>
+          <thead class="thead-dark">
+            <tr>
+                <th>Full address</th>
+                <th>Skills</th>
+                <th>Join date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td>{{object.address}}</td>
+                <td>{{object.first_name}}</td>
+                <td>{{object.last_name}}</td>
+            </tr>
+          </tbody>
+          <thead class="thead-dark">
+            <tr>
+                <th>Employee remarks and additional information</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>     
+                <td> {{ object.employee_cv }} </td>
+            </tr>
+          </tbody>
+      </table>
+
+    </div>
+  </div>
+  <p>{{ notice }}</p>
+</div>
+
+    
+
+{% endblock %}
