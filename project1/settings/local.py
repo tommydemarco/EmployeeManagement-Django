@@ -29,4 +29,9 @@ DATABASES = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+#dafault static URL
 STATIC_URL = '/static/'
+
+#custom: defining thre static directory of the static files
+STATICFILES_DIRS = [BASE_DIR.child("static")]
+

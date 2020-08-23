@@ -1,0 +1,89 @@
+<!-- loading the static files -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- title definition -->
+    {% if title %}
+        <title>{{title}}</title>
+    {% else %}
+        <title>Employee Management</title>
+    {% endif %}
+
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!--::::: ALL CSS FILES :::::::-->
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css"%}">
+
+	<!-- my master CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static "css/master.css"%}">
+
+</head>
+
+<body id="body">
+
+<!-- navigation -->
+<nav id="main-navigation" class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
+  <div class="container">
+    <a class="navbar-brand" href="#">Employees Management System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div class="card border-0 shadow my-5">
+
+    <!-- block content -->
+    {% block content %}
+    {% endblock %}
+    
+  </div>
+</div>
+
+
+
+
+<!-- footer -->
+<footer id="sticky-footer" class="py-4 bg-light">
+  <div class="container text-center">
+    <small>Copyright &copy; Your Website</small>
+  </div>
+</footer>
+
+<!-- if user authenticated format -->
+{% if not user.is_authenticated %}
+{% endif %}
+
+  
+<!-- loading the JS files -->
+<script src="{% static "js/jquery.min.js"%}"></script>
+<script src="{% static "js/bootstrap.bundle.min.js"%}"></script>
+<script src="{% static "js/main.js"%}"></script>
+
+</body>

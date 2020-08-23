@@ -8,6 +8,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #adding fields urls
     re_path('', include('apps.fields.urls')),
-    re_path('', include('apps.prueba.urls'))
+    re_path('', include('apps.employees.urls'))
 
 ]
