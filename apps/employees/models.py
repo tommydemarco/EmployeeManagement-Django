@@ -18,6 +18,7 @@ class Employee(models.Model):
     #the first attribute represents the name of the model that will appear in admin
     first_name = models.CharField('First name', max_length=50)
     last_name = models.CharField('Last Name', max_length=20)
+    full_name = models.CharField('Full name', max_length=120, blank=True)
     contact_phone = models.IntegerField('Contact Number')
     address = models.CharField('Adress', max_length=80)
     base = models.CharField('Base', max_length=3, choices=BASE_CHOICES)

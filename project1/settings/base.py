@@ -11,7 +11,6 @@ BASE_DIR = Path(__file__).ancestor(3)
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -24,7 +23,6 @@ INSTALLED_APPS = [
     #adding local applications
     'apps.employees',
     'apps.fields',
-    'apps.prueba',
     #installing the third-party app CKEDITOR, to make editing text enters easier
     'ckeditor'
 ]

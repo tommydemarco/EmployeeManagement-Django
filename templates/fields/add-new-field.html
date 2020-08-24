@@ -9,13 +9,18 @@
   <p class="lead">In this snippet, the background image is fixed to the body element. Content on the page will scroll, but the image will remain in a fixed position!</p>
 
   <!-- search row -->
-  <div class="row">
+  <div class="row mb-4">
     <div class="col-sm-6">
 
     <form method="POST" class="add-new-employee-form">
       {% csrf_token %}
       <!-- inserting the create view form-->
-      {{ form.as_p }}
+      <h3 class="mb-3"> Details of the manager </h3>
+      <p> {{ form.first_name }} </p>
+      <p> {{ form.first_name }} </p>
+      <h3 class="mb-3"> Details of the new field </h3>
+      <p> {{ form.field_name }} </p>
+      <p> {{ form.alt_name }} </p>
       <button class="btn btn-outline-primary" type="submit">Add new employee</button>
     </div>
   </div>

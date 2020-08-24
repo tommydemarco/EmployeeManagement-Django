@@ -1,5 +1,5 @@
 <!-- extends the base template -->
-{% extends 'employees/base.html' %}
+{% extends 'base.html' %}
 
 <!-- start of the content block -->
 {% block content %}
@@ -32,7 +32,7 @@
                 <td>{{employee.last_name}}</td>
                 <td>{{employee.base}}</td>
                 <td>{{employee.contact_phone}}</td>
-                <td><a class="table-link" href="{% url 'employee_details' employee.id %}">Employee details</a></td>
+                <td><a class="table-link" href="{% url 'employees_app:employee_details' employee.id %}">Employee details</a></td>
             </tr>
             {% endfor %}
           </tbody>

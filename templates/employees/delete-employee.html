@@ -1,0 +1,20 @@
+<!-- extends the base template -->
+{% extends 'base.html' %}
+
+<!-- start of the content block -->
+{% block content %}
+
+<div class="card-body p-5">
+  <h1 class="font-weight-light">Employee Deletion</h1>
+  <p class="lead">In this snippet, the background image is fixed to the body element. Content on the page will scroll, but the image will remain in a fixed position!</p>
+  
+  <!-- deletion form -->
+  <form method="POST">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Delete employee</button>
+  </form>
+</div>
+
+    
+
+{% endblock %}
