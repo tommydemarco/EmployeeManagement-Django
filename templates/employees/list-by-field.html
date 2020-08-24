@@ -1,16 +1,23 @@
 <!-- extends the base template -->
 {% extends 'base.html' %}
 
+<!-- start of the title block -->
+{% block title %}
+  <title>Employees by field - {{notice}}</title>
+{% endblock %}
+
+
 <!-- start of the content block -->
 {% block content %}
 
 <div class="card-body p-5">
-  <h1 class="font-weight-light">Fixed Full Page Background Image</h1>
-  <p class="lead">In this snippet, the background image is fixed to the body element. Content on the page will scroll, but the image will remain in a fixed position!</p>
+  <h1 class="font-weight-light">Search by work field, position: {{notice}}</h1>
+  <p class="lead">
+    Search results returned for the work field: {{notice}}
+  </p>
   <!-- list table start -->
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Employees</h3>
       <table class="table table-bordered table-striped table-responsive-stack mt-4"  id="tableOne">
           <thead class="thead-dark">
             <tr>
@@ -32,7 +39,7 @@
                 <td>{{employee.last_name}}</td>
                 <td>{{employee.base}}</td>
                 <td>{{employee.contact_phone}}</td>
-                <td>{{employee.id}}</td>
+                <td><a class="table-link" href="{% url 'employees_app:employee_details' employee.id %}">Employee details</a></td>
             </tr>
             {% endfor %}
 
@@ -41,7 +48,6 @@
     </div>
   </div>
 </div>
-
-    
+ 
 
 {% endblock %}

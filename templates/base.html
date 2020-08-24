@@ -6,12 +6,9 @@
 
 <head>
 
-	<!-- title definition -->
-    {% if title %}
-        <title>{{title}}</title>
-    {% else %}
-        <title>Employee Management</title>
-    {% endif %}
+  <!-- TITLE BLOCK -->
+    {% block title %}
+    {% endblock %}
 
 	<!-- META -->
 	<meta charset="utf-8">
@@ -28,27 +25,25 @@
 <body id="body">
 
 <!-- navigation -->
-<nav id="main-navigation" class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
+<nav id="main-navigation" class="navbar navbar-expand-lg navbar-light bg-white static-top mb-5 shadow">
   <div class="container">
-    <a class="navbar-brand" href="#">Employees Management System</a>
+    <a id="logo" class="navbar-brand" href="{% url 'employees_app:list_all' %}">Employees Management System</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'employees_app:list_all' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" href="{% url 'employees_app:add_new_employee' %}">Add new employee</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Services</a>
+          <a class="nav-link" href="{% url 'fields_app:add_new_field' %}">Add new field</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="{% url 'employees_app:contact_support' %}">Contact support</a>
         </li>
       </ul>
     </div>
@@ -58,6 +53,13 @@
 <!-- Page Content -->
 <div class="container">
   <div class="card border-0 shadow my-5">
+  {% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }}">
+			{{ message }}
+			</div>
+		{% endfor %}
+	{% endif %}
 
     <!-- block content -->
     {% block content %}
@@ -70,9 +72,10 @@
 
 
 <!-- footer -->
-<footer id="sticky-footer" class="py-4 bg-light">
+<footer id="sticky-footer" class="bg-light">
   <div class="container text-center">
-    <small>Copyright &copy; Your Website</small>
+    Employees Management System, a project developed with <a href="https://www.djangoproject.com/">Django</a> by 
+    <a href="https://tommasodemarco.com">Tommaso De Marco</a>
   </div>
 </footer>
 

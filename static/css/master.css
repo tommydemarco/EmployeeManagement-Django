@@ -11,11 +11,33 @@ h3 {font-weight:300}
 
 .error-message {color:#e74c3c!important}
 
+.danger {color:red!important}
+
+#body .mb-5, .my-5 {margin-bottom: 4rem !important;}
+
 #body .btn-outline-primary {color: #34495e;border-color: #34495e; padding-bottom: 8px}
 #body .btn-outline-primary:hover {background-color: #34495e; color:white}
 
+#body input {max-width:450px}
+
+#body .btn-danger {color: #dc3545;background-color: white;border-color: #dc3545;padding-bottom:8px}
+#body .btn-danger:hover {color: white;background-color: #dc3545;border-color: #dc3545;}
+
+#body .alert {margin-top: 30px;margin-bottom: 0px;margin-right: 5%;margin-left: 5%;text-align: center;}
+
+
 /*============================== navbar ==============================*/
-#main-navigation {padding-top: 20px; padding-bottom: 20px;}
+#main-navigation {padding-top: 30px; padding-bottom: 30px;}
+#body .nav-item a {font-size:18px}
+
+@media (min-width: 992px){
+#body .navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 0.7rem;
+    padding-left: 0.7rem;
+}}
+
+#body .navbar-brand:hover {color: rgba(0, 0, 0, 0.7);}
+
 
 /*============================== table ==============================*/
 .table-responsive-stack tr {
@@ -66,5 +88,10 @@ h3 {font-weight:300}
   background:#34495e;
 }
 
+
 /*============================== form ==============================*/
 .input-custom {max-width: 400px!important}
+
+
+/*============================== footer ==============================*/
+#body #sticky-footer {padding-top:30px; padding-bottom:30px}

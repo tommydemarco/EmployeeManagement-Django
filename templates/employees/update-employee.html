@@ -1,12 +1,21 @@
 <!-- extends the base template -->
 {% extends 'base.html' %}
 
+<!-- start of the title block -->
+{% block title %}
+  <title>Update employee details</title>
+{% endblock %}
+
+
 <!-- start of the content block -->
 {% block content %}
 
 <div class="card-body p-5">
   <h1 class="font-weight-light">Update Employee's details</h1>
-  <p class="lead">In this snippet, the background image is fixed to the body element. Content on the page will scroll, but the image will remain in a fixed position!</p>
+  <p class="lead">
+    Fill out the form and modify the information about the employee 
+    <b>{{object.last_name}}</b>, <b>{{object.first_name}}</b>
+  </p>
 
   <!-- search row -->
   <div class="row">
@@ -16,58 +25,11 @@
       {% csrf_token %}
       <!-- inserting the create view form-->
       {{ form.as_p }}
-      <button class="btn btn-outline-primary" type="submit">Add new employee</button>
+      <button class="btn btn-outline-primary mt-2" type="submit">Update employee details</button>
     </div>
   </div>
 
-  <!-- list table start -->
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title">Employees</h3>
-      <table class="table table-bordered table-striped table-responsive-stack mt-4"  id="tableOne">
-          <thead class="thead-dark">
-            <tr>
-                <th>Position</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Base</th>
-                <th>Contact number</th>
-                <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-          
-          <!-- adding logic for the case that there are no results -->
-          {% if employees and employees != "no results" %}
-            <!-- looping over ovject_list elements -->
-            {% for employee in employees %}
-            <tr>
-                <td>{{employee.field.alt_name}}</td>
-                <td>{{employee.first_name}}</td>
-                <td>{{employee.last_name}}</td>
-                <td>{{employee.base}}</td>
-                <td>{{employee.contact_phone}}</td>
-                <td>{{employee.id}}</td>
-            </tr>
-            {% endfor %}
-
-          {% elif employees == "no results" %}
-            <tr>
-                <td class="error-message">Your search returned no results. Search by name is case sensitive.</td>
-            </tr>
-          
-          {% else %}
-            <tr>
-                <td>There are no results yet for your search</td>
-            </tr>
-
-          {% endif %}
-
-          </tbody>
-      </table>
-    </div>
   </div>
-
 </div>
 
     

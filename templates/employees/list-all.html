@@ -1,16 +1,35 @@
 <!-- extends the base template -->
 {% extends 'base.html' %}
 
+<!-- start of the title block -->
+{% block title %}
+  <title> Employees list </title>
+
+  <!-- javascript for menu tags -->
+  <script>
+  (function(){
+    document.addEventListener("DOMContentLoaded", function(){
+      document.querySelectorAll('.nav-item')[0].classList.add('active');
+    });
+  })();
+  </script>
+
+{% endblock %}
+
+
 <!-- start of the content block -->
 {% block content %}
 
 <div class="card-body p-5">
-  <h1 class="font-weight-light">Fixed Full Page Background Image</h1>
-  <p class="lead">In this snippet, the background image is fixed to the body element. Content on the page will scroll, but the image will remain in a fixed position!</p>
+  <h1 class="font-weight-light">Employees list</h1>
+  <p class="lead">
+    Consult the list of all the employees and access the details of the simgle employee by
+    clicking on the details link.
+  </p>
   <!-- list table start -->
-  <div class="panel panel-primary">
+  <div class="panel panel-primary mt-4">
     <div class="panel-heading">
-      <h3 class="panel-title">Employees</h3>
+      <h3 class="panel-title">Complete list of employees</h3>
       <table class="table table-bordered table-striped table-responsive-stack mt-4"  id="tableOne">
           <thead class="thead-dark">
             <tr>
@@ -72,6 +91,11 @@
         <!-- pagination end -->
 
     </div>
+    <h3 class="panel-title mt-5">Advanced search options</h3>
+    <p class="lead">
+      Here are the advanced search options available for employee search.
+    </p>
+    <a class="btn btn-outline-primary mr-1" href="{% url 'employees_app:name_search' %}" tabindex="-1" aria-disabled="true">Search employee by name</a>
   </div>
 </div>
 

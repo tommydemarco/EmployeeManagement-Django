@@ -1,6 +1,12 @@
 <!-- extends the base template -->
 {% extends 'base.html' %}
 
+<!-- start of the title block -->
+{% block title %}
+  <title>Search employees</title>
+{% endblock %}
+
+
 <!-- start of the content block -->
 {% block content %}
 
@@ -18,7 +24,7 @@
         {% csrf_token %}
 
         <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Enter the first name here">
-        <button type="submit" class="btn btn-info mt-3"> Search </button>
+        <button type="submit" class="btn btn-outline-primary mt-3"> Search </button>
       </form>
     </div>
 
@@ -30,7 +36,7 @@
         {% csrf_token %}
 
         <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Enter the last name here">
-        <button type="submit" class="btn btn-info mt-3"> Search </button>
+        <button type="submit" class="btn btn-outline-primary mt-3"> Search </button>
       </form>
     </div>
   </div>
@@ -38,7 +44,7 @@
   <!-- list table start -->
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Employees</h3>
+      <h3 class="panel-title">Results</h3>
       <table class="table table-bordered table-striped table-responsive-stack mt-4"  id="tableOne">
           <thead class="thead-dark">
             <tr>
@@ -62,7 +68,7 @@
                 <td>{{employee.last_name}}</td>
                 <td>{{employee.base}}</td>
                 <td>{{employee.contact_phone}}</td>
-                <td>{{employee.id}}</td>
+                <td><a class="table-link" href="{% url 'employees_app:employee_details' employee.id %}">Employee details</a></td>
             </tr>
             {% endfor %}
 

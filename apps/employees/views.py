@@ -10,6 +10,9 @@ from django.views.generic import (
     DeleteView,
 )
 
+#importing messages 
+from django.contrib import messages
+
 #importing reverse lazy
 from django.urls import reverse_lazy
 
@@ -48,6 +51,15 @@ class ListEmployeesByField(ListView):
 
         #returning the filtered element list
         return filtered_list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["notice"] = str(self.kwargs['fieldname']).upper()
+
+        #this for example would pass to the detail view a querySet of all the employees
+        #context["notice"] = Employee.objects.all()
+
+        return context
     
 
 #class based views for searching employees
@@ -69,7 +81,13 @@ class ListEmployeesByKeyword(ListView):
                 first_name = first_name
             )
 
-            return filtered_list
+            if filtered_list.count() > 0: 
+
+                return filtered_list
+
+            else:
+                no_results = "no results"
+                return no_results
 
         #returning the search by last name 
         if last_name:
@@ -124,7 +142,7 @@ class CreateNewEmployee(CreateView):
     #adding the url for when the process is complete.
     #required in a CreateView
     #syntax: 'urls_app_name:url_name'
-    success_url = reverse_lazy('employees_app:creation_success')
+    success_url = reverse_lazy('employees_app:list_all')
 
     #THE FORM VALID  TAKES PLACE AFTER THE FORM HAS BEEN VALIDATED
     #adding attributes automatically using the method form_valid
@@ -136,6 +154,8 @@ class CreateNewEmployee(CreateView):
         #saving the outcome
         employee.save()
 
+        success_message = messages.add_message(self.request, messages.SUCCESS, 
+        'The employee has been successfully added to the database. You have been redirected to the main employee list.')
         #syntax for returning the result  of the form valid
         return super(CreateNewEmployee, self).form_valid(form)
 
@@ -144,10 +164,10 @@ class CreateNewEmployee(CreateView):
 class UpdateEmployee(UpdateView):
     template_name = "employees/update-employee.html"
     model = Employee
-    fields = fields = ['first_name', 'last_name', 'contact_phone', 'address', 'base', 'field']
+    form_class = CreateEmployee
 
     #redirecting upon update complete
-    success_url = reverse_lazy('employees_app:creation_success')
+    success_url = reverse_lazy('employees_app:list_all')
 
     #THE POST METHOD IS CALLLED BEFORE THE FORM HAS BEEN SERVER-VALIDATED
     #adding a new value with the post method 
@@ -163,6 +183,9 @@ class UpdateEmployee(UpdateView):
         employee.full_name = employee.first_name + ' ' + employee.last_name
         employee.save()
 
+        success_message = messages.add_message(self.request, messages.SUCCESS, 
+        'The employee details have been successfully updated. You have been redirected to the main employee list.')
+
         #syntax for returning the result  of the form valid
         return super(UpdateEmployee, self).form_valid(form)
 
@@ -172,8 +195,14 @@ class DeleteEmployee(DeleteView):
     template_name = 'employees/delete-employee.html'
     model = Employee
 
-    success_url = success_url = reverse_lazy('employees_app:creation_success')
+    success_url = success_url = reverse_lazy('employees_app:list_all')
 
+    def form_valid(self, form):
+
+        success_message = messages.add_message(self.request, messages.SUCCESS, 
+        'The employee has been successfully deleted from the database. You have been redirected to the main employee list.')
+        #syntax for returning the result  of the form valid
+        return super(DeleteEmployee, self).form_valid(form)
 
 #TemplateView section
 #creating a success view for the redirection with a simple template view
@@ -188,4 +217,7 @@ class UpdateSuccess(TemplateView):
 class DeletionSuccess(TemplateView):
     template_name = "employees/success/deletion-success.html"
 
+#creating a static contact support view
+class ContactSupport(TemplateView):
+    template_name = "employees/contact-support.html"
 

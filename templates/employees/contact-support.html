@@ -1,0 +1,59 @@
+<!-- extends the base template -->
+{% extends 'base.html' %}
+
+<!-- start of the title block -->
+{% block title %}
+  <title> Contact support </title>
+
+  <!-- javascript for menu tags -->
+  <script>
+  (function(){
+    document.addEventListener("DOMContentLoaded", function(){
+      document.querySelectorAll('.nav-item')[3].classList.add('active');
+    });
+  })();
+  </script>
+
+{% endblock %}
+
+<!-- start of the content block -->
+{% block content %}
+
+<div class="card-body p-5">
+  <h1 class="font-weight-light">Contact the support center</h1>
+  <p class="lead">
+    Fill out the form with an accurate description of the technical problem you are facing and the
+    support team will look into it and will be glad to assist you. 
+  </p>
+  
+  <div class="row">
+    <div class="col-md-7">
+      <form>
+        <div class="form-group">
+          <label>Your email:</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter your employee email" name="email">
+        </div>
+        <div class="form-group">
+          <label>Your employee code:</label>
+          <input type="password" class="form-control" id="pwd" placeholder="Enter your employee code" name="pwd">
+        </div>
+        <div class="form-group">
+          <label>Describe the issue you are facing:</label>
+          <textarea class="form-control" placeholder="Provide an accurate description of the issue"></textarea>
+        </div>
+      </form>
+      <button class="btn btn-outline-primary mt-2">Contact support</button>
+    </div>
+  </div>
+
+  <!-- form not active disclaimer -->
+  <p class="lead mt-4 danger">
+    WARNING: this website is a personal project only. This form does not work. 
+  </p>
+
+  
+</div>
+
+    
+
+{% endblock %}

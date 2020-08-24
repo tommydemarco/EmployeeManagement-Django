@@ -1,14 +1,24 @@
 <!-- extends the base template -->
 {% extends 'base.html' %}
 
+<!-- start of the title block -->
+{% block title %}
+  <title>Employee details</title>
+{% endblock %}
+
+
 <!-- start of the content block -->
 {% block content %}
 
 <div class="card-body p-5">
-  <h1 class="font-weight-light">Fixed Full Page Background Image</h1>
-  <p class="lead">In this snippet, the background image is fixed to the body element. Content on the page will scroll, but the image will remain in a fixed position!</p>
+  <h1 class="font-weight-light">Employee details for: {{object.first_name}} {{object.last_name}}</h1>
+  <p class="lead">
+    This page is showing the personal details of the employee. </br>
+    You can modify the existing information or delete this employee from the database by clicking on the 
+    appropriate action.
+  </p>
   <!-- list table start -->
-  <div class="panel panel-primary">
+  <div class="panel panel-primary mb-4">
     <div class="panel-heading">
       <h3 class="panel-title">Employees</h3>
       <table class="table table-bordered table-striped table-responsive-stack mt-4"  id="tableOne">
@@ -28,31 +38,29 @@
                 <td>{{object.last_name}}</td>
                 <td>{{object.base}}</td>
                 <td>{{object.contact_phone}}</td>
-                <td>{{object.field.name}}</td>
+                <td>{{object.field.field_name}}</td>
             </tr>
           </tbody>
           <thead class="thead-dark">
             <tr>
                 <th>Full address</th>
                 <th>Skills</th>
-                <th>Join date</th>
+                <th>Crew Code</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-                <td>{{object.address}}</td>
-                <td>{{object.first_name}}</td>
-                <td>{{object.last_name}}</td>
-            </tr>
-          </tbody>
-          <thead class="thead-dark">
-            <tr>
-                <th>Employee remarks and additional information</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>     
-                <td> {{ object.employee_cv }} </td>
+                <td>{{ object.address }}</td>
+                <td>
+                  {% if employee.skills.all|length <= 0 %}
+                    The employee has no recorded skills yet
+                  {% else %}
+                    {% for skill in employee.skills.all %}
+                      {{ skill }} </br>
+                    {% endfor %}
+                  {% endif %}
+                </td>
+                <td>{{object.last_name|upper|slice:":3"}}{{object.first_name|upper|slice:":3"}}</td>
             </tr>
           </tbody>
       </table>
@@ -60,6 +68,8 @@
     </div>
   </div>
   <p>{{ notice }}</p>
+  <a class="btn btn-danger mr-1" href="{% url 'employees_app:delete_employee' object.id %}" tabindex="-1" aria-disabled="true">Delete employee</a>
+    <a class="btn btn-outline-primary mr-1" href="{% url 'employees_app:update_employee' object.id %}" tabindex="-1" aria-disabled="true">Update details</a>
 </div>
 
     

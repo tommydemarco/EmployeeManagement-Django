@@ -1,7 +1,7 @@
 from django.db import models
 
 #importing the employee model
-from apps.fields.models import Field
+'''from apps.employees.models import Employee'''
 
 # Create your models here.
 
@@ -11,7 +11,8 @@ class Field(models.Model):
     field_name = models.CharField('Field Name', max_length=50)
     alt_name = models.CharField('Short Name', max_length=20)
     in_use = models.BooleanField("In use", default=True)
-    field_manager = models.ForeignKey(Field, on_delete=models.CASCADE)
+
+    '''field_manager = models.ForeignKey(Employee, on_delete=models.CASCADE)'''
 
     #changing the name of the model in the django admin interface and other customizations
     class Meta:
@@ -25,7 +26,7 @@ class Field(models.Model):
     #modifying the magic method __str__
     def __str__(self):
         if self.in_use:
-            return "Department name:{}, short name: {}, In use, ID: {}".format(self.name, self.alt_name, self.id)
+            return "{}, short name: {}, In use, ID: {}".format(self.field_name.upper(), self.alt_name, self.id)
         else:
-            return "Department name:{}, short name: {}, Not in use, ID: {}".format(self.name, self.alt_name, self.id)
+            return "{}, short name: {}, Not in use, ID: {}".format(self.field_name.upper(), self.alt_name, self.id)
 

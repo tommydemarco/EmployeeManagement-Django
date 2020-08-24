@@ -1,70 +1,39 @@
 <!-- extends the base template -->
 {% extends 'base.html' %}
 
+<!-- start of the title block -->
+{% block title %}
+  <title>Add new employee</title>
+
+  <!-- javascript for menu tags -->
+  <script>
+  document.addEventListener("DOMContentLoaded", function(){
+    document.querySelectorAll('.nav-item')[1].classList.add('active');
+  });
+  </script>
+{% endblock %}
+
+
 <!-- start of the content block -->
 {% block content %}
 
 <div class="card-body p-5">
-  <h1 class="font-weight-light">Search Employee by Name</h1>
-  <p class="lead">In this snippet, the background image is fixed to the body element. Content on the page will scroll, but the image will remain in a fixed position!</p>
+  <h1 class="font-weight-light">Add a new employee</h1>
+  <p class="lead">
+    Fill out the form and add a new employee to the database. 
+    After you have submitted the form you will still be able to modify existing information
+    by accessing the employee details page and selecting the appropriate action.
+  </p>
 
   <!-- search row -->
-  <div class="row">
+  <div class="row mt-4 mb-2">
     <div class="col-sm-6">
 
     <form method="POST" class="add-new-employee-form">
       {% csrf_token %}
       <!-- inserting the create view form-->
       {{ form.as_p }}
-      <button class="btn btn-outline-primary" type="submit">Add new employee</button>
-    </div>
-  </div>
-
-  <!-- list table start -->
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title">Employees</h3>
-      <table class="table table-bordered table-striped table-responsive-stack mt-4"  id="tableOne">
-          <thead class="thead-dark">
-            <tr>
-                <th>Position</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Base</th>
-                <th>Contact number</th>
-                <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-          
-          <!-- adding logic for the case that there are no results -->
-          {% if employees and employees != "no results" %}
-            <!-- looping over ovject_list elements -->
-            {% for employee in employees %}
-            <tr>
-                <td>{{employee.field.alt_name}}</td>
-                <td>{{employee.first_name}}</td>
-                <td>{{employee.last_name}}</td>
-                <td>{{employee.base}}</td>
-                <td>{{employee.contact_phone}}</td>
-                <td>{{employee.id}}</td>
-            </tr>
-            {% endfor %}
-
-          {% elif employees == "no results" %}
-            <tr>
-                <td class="error-message">Your search returned no results. Search by name is case sensitive.</td>
-            </tr>
-          
-          {% else %}
-            <tr>
-                <td>There are no results yet for your search</td>
-            </tr>
-
-          {% endif %}
-
-          </tbody>
-      </table>
+      <button class="btn btn-outline-primary mt-2" type="submit">Add new employee</button>
     </div>
   </div>
 

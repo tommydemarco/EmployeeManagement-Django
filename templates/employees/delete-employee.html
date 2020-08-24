@@ -1,20 +1,38 @@
 <!-- extends the base template -->
 {% extends 'base.html' %}
 
+<!-- start of the title block -->
+{% block title %}
+  <title>Delete employee</title>
+{% endblock %}
+
 <!-- start of the content block -->
 {% block content %}
 
 <div class="card-body p-5">
   <h1 class="font-weight-light">Employee Deletion</h1>
-  <p class="lead">In this snippet, the background image is fixed to the body element. Content on the page will scroll, but the image will remain in a fixed position!</p>
+  <p class="lead">
+  Are you sure that you want to delete the employee <b>{{object.last_name}}</b>, <b>{{object.first_name}}</b>
+  from the database? </br>
+  If you wanto to modify the existing data click the button below.
+  </p>
+  <a class="btn btn-outline-primary mr-1" href="{% url 'employees_app:update_employee' object.id %}" tabindex="-1" aria-disabled="true">Update details</a>
+
+  <p class="lead mt-4 danger">
+    WARNING: The deletion can not be undone. </br>
+    If you want to add the employee in the database again, a new manual insertion will
+    have to be done.  
+  </p>
   
+  <p class="lead">
+    Yes, I am sure to proceed with the deletion of the employee from the database
+  </p>
+
   <!-- deletion form -->
   <form method="POST">
     {% csrf_token %}
     <button class="btn btn-danger" type="submit">Delete employee</button>
   </form>
 </div>
-
-    
 
 {% endblock %}
